@@ -17,7 +17,7 @@
 #define second_relay_pin 7
 #define switch_pin 8 //connected to button switch
 
-const long content_duration = 2000; //USER DEFINED SETTING
+const long content_duration = 10000; //USER DEFINED SETTING
 
 long start_time, elapsed_time; //when actual button is pressed
 boolean is_button_locked; //for locking the button once pressed until the content finishes
@@ -29,12 +29,15 @@ void setup() {
   pinMode(second_relay_pin, OUTPUT);
 
   Serial.begin(9600);
+
+  digitalWrite(first_relay_pin, HIGH);
+  digitalWrite(second_relay_pin, HIGH);
 }
 
 void loop() {
 
-  run_keyboard_simulation(); 
-  
+   run_keyboard_simulation(); 
+   
   if ( digitalRead(switch_pin) == LOW && is_button_locked == false ) {
 
     start_time = millis();
@@ -73,6 +76,9 @@ void run_keyboard_simulation() {
     }
 
     else if (my_command == '2') {
+  
+      write_keyboard_press(second_relay_pin);
+      Serial.println("CTRL-R");
     }
 
   }
@@ -80,8 +86,9 @@ void run_keyboard_simulation() {
 
 void write_keyboard_press (int which_pin) {
 
+  digitalWrite(which_pin, LOW);
+  delay(100);
   digitalWrite(which_pin, HIGH);
   delay(100);
-  digitalWrite(which_pin, LOW);
 }
 
