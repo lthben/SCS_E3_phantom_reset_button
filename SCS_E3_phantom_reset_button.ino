@@ -17,28 +17,21 @@
 #define second_relay_pin 7
 #define switch_pin 8 //connected to button switch
 
-<<<<<<< HEAD
-const long content_duration = 405000; //USER DEFINED SETTING
-=======
-<<<<<<< Updated upstream
-const long content_duration = 10000; //USER DEFINED SETTING
-=======
 const long content_duration = 4000; //USER DEFINED SETTING
->>>>>>> Stashed changes
->>>>>>> origin/master
+
 
 long start_time, elapsed_time; //when actual button is pressed
 boolean is_button_locked; //for locking the button once pressed until the content finishes
 
 void setup() {
 
-  pinMode(switch_pin, INPUT_PULLUP); //active low
+  pinMode(switch_pin, INPUT_PULLUP); //active low switch
   pinMode(first_relay_pin, OUTPUT);
   pinMode(second_relay_pin, OUTPUT);
 
   Serial.begin(9600);
 
-  digitalWrite(first_relay_pin, HIGH);
+  digitalWrite(first_relay_pin, HIGH); //active low relay
   digitalWrite(second_relay_pin, HIGH);
 }
 
@@ -97,9 +90,6 @@ void write_keyboard_press (int which_pin) {
   digitalWrite(which_pin, LOW);
   delay(100);
   digitalWrite(which_pin, HIGH);
-<<<<<<< Updated upstream
   delay(100);
-=======
->>>>>>> Stashed changes
 }
 
