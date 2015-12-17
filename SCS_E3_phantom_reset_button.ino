@@ -17,7 +17,7 @@
 #define second_relay_pin 7
 #define switch_pin 8 //connected to button switch
 
-const long content_duration = 10000; //USER DEFINED SETTING
+const long content_duration = 405000; //USER DEFINED SETTING
 
 long start_time, elapsed_time; //when actual button is pressed
 boolean is_button_locked; //for locking the button once pressed until the content finishes
